@@ -28,7 +28,7 @@ public class Runner {
 //            anzahl++;
 //            if (ergebnis.equals("Versenkt")) {
 //                lebt = false;
-//                System.out.println("Sie haben " + anzahl + "Versuche benötigt");
+//                System.out.println("Sie haben " + anzahl + "Versuche benÃ¶tigt");
 //            }
 //        }
 

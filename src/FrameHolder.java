@@ -20,10 +20,10 @@ public class FrameHolder {
     }
 
     private JPanel createContent() {
-        JPanel panel = new JPanel(new BorderLayout());
+        JPanel panel = new JPanel(new BorderLayout(100,100));
         JPanel feldLinks = new JPanel(new GridLayout(10, 10));
         JPanel feldRechts = new JPanel(new GridLayout(10, 10));
-        JLabel label = new JLabel("Wählen Sie Ihre Flotte");
+        JLabel label = new JLabel("WÃ¤hlen Sie Ihre Flotte");
         JPanel buttonPanel = new JPanel();
 
         panel.add(feldLinks, BorderLayout.WEST);
@@ -34,17 +34,19 @@ public class FrameHolder {
         for (int i = 0; i < 100; i++) {
             JPanel bli = new JPanel();
             bli.setBackground(Color.cyan);
+            bli.setSize(80, 80);
+            bli.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1)); // Rand 1 Pixel
+            bli.setToolTipText("Text");
             feldLinks.add(bli);
-            bli.setSize(10, 10);
-
 
         }
 
         for (int i = 0; i < 100; i++) {
             JPanel bla = new JPanel();
             bla.setBackground(Color.blue);
+            bla.setSize(10, 10);
+            bla.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1)); // Rand 1 Pixel
             feldRechts.add(bla);
-            bla.setSize(10,10);
         }
 
         JButton button1 = new JButton("Spielen");

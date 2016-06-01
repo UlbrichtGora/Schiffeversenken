@@ -29,9 +29,9 @@ public class SpielHelfer {
     }
 
     public ArrayList<String> platziereSchiffe(int schiffGroesse) {
-        ArrayList<String> alphaZellen = new ArrayList<String>();     // enth‰lt die Koordinaten der Form f6
-        String temp = null;                                         // tempor‰rer String f¸r concat
-        int[] koordinaten = new int[schiffGroesse];                // aktuell mˆgliche Koordinaten
+        ArrayList<String> alphaZellen = new ArrayList<String>();     // enth√§lt die Koordinaten der Form f6
+        String temp = null;                                         // tempor√§rer String f√ºr concat
+        int[] koordinaten = new int[schiffGroesse];                // aktuell m√∂gliche Koordinaten
         int versuche = 0;                                           // aktueller Versuchszaehler;
         boolean erfolg = false;                                     // schalter = einen guten Ort gefunden?
         int ort = 0;                                                // aktuelle Startposition
@@ -42,7 +42,7 @@ public class SpielHelfer {
             inkrement = rasterLaenge;                               // vertikales Inkrement
         }
         while (!erfolg & versuche++ < 200) {                        // Hauptsuchschleife
-            ort = (int) (Math.random() * rasterGroesse);             // Zuf‰lligen Startpunkt holen
+            ort = (int) (Math.random() * rasterGroesse);             // Zuf√§lligen Startpunkt holen
 //            System.out.println("Versuche: " + ort);
             int x = 0;                                              // n-te Position in zu platzierendem Schiff
             erfolg = true;                                          // von Erfol ausgehen
@@ -50,10 +50,10 @@ public class SpielHelfer {
                 if (raster[ort] == 0) {                             // wenn noch nicht benutzt
                     koordinaten[x++] = ort;                          // Ort speichern
                     ort += inkrement;                               // 'naechste' angrenzdende Zelle suchen
-                    if (ort >= rasterGroesse) {                       // auﬂerhalb der Grenzen - 'Ende';
+                    if (ort >= rasterGroesse) {                       // au√üerhalb der Grenzen - 'Ende';
                         erfolg = false;                             // Fehlschlag
                     }
-                    if (x > 0 & (ort % rasterLaenge == 0)) {            // auﬂerhalb der Grenzen - rechter Rand
+                    if (x > 0 & (ort % rasterLaenge == 0)) {            // au√üerhalb der Grenzen - rechter Rand
                         erfolg = false;                             // Fehlschlag
                     }
                 } else {                                             // bereit belegten Ort gefunden
