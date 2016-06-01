@@ -38,6 +38,7 @@ public class FrameHolder {
         panel.add(feldRechts, BorderLayout.EAST);
         panel.add(label, BorderLayout.NORTH);
         panel.add(buttonPanel, BorderLayout.SOUTH);
+        panel.add(this.createStringList(), BorderLayout.CENTER);
         System.out.println(panel.getPreferredSize());
 
 
@@ -89,6 +90,17 @@ public class FrameHolder {
         buttonPanel.add(button2);
         button2.setBackground(Color.lightGray);
 
+
+        return panel;
+    }
+    private JPanel createStringList() {
+        JPanel panel = new JPanel();
+
+        String[] flotte = {"Schnellboot", "Fregatte", "Flugzeugträger",};
+
+        JList liste = new JList<>(flotte);
+
+        panel.add( new JScrollPane(liste, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER));
 
         return panel;
     }
