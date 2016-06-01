@@ -1,9 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 
 /**
  * Created by mgora on 17.05.2016.
@@ -46,6 +43,35 @@ public class FrameHolder {
 
         for (int i = 0; i < 100; i++) {
             JPanel bli = createPanel();
+            bli.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    bli.setToolTipText("JPanel 1 Mouse CLICKED");
+                    bli.setBackground(Color.YELLOW);
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    bli.setToolTipText("JPanel 1 Mouse Pressed");
+                    bli.setBackground(Color.gray);
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    bli.setToolTipText("JPanel 1 Mouse Entered");
+
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+
+                }
+            });
             feldLinks.add(bli);
 
         }
