@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 /**
  * Created by mgora on 17.05.2016.
@@ -19,8 +21,17 @@ public class FrameHolder {
         this.frame.setResizable(false);
     }
 
+    private JPanel createPanel() {
+        JPanel panel = new JPanel();
+        panel.setBackground(Color.blue);
+        panel.setPreferredSize(new Dimension(30, 30));
+        panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1)); // Rand 1 Pixel
+        panel.setToolTipText(getClass().getName());
+        return panel;
+    }
+
     private JPanel createContent() {
-        JPanel panel = new JPanel(new BorderLayout(100,100));
+        JPanel panel = new JPanel(new BorderLayout(100, 100));
         JPanel feldLinks = new JPanel(new GridLayout(10, 10));
         JPanel feldRechts = new JPanel(new GridLayout(10, 10));
         JLabel label = new JLabel("Wählen Sie Ihre Flotte");
@@ -30,22 +41,17 @@ public class FrameHolder {
         panel.add(feldRechts, BorderLayout.EAST);
         panel.add(label, BorderLayout.NORTH);
         panel.add(buttonPanel, BorderLayout.SOUTH);
+        System.out.println(panel.getPreferredSize());
+
 
         for (int i = 0; i < 100; i++) {
-            JPanel bli = new JPanel();
-            bli.setBackground(Color.cyan);
-            bli.setSize(80, 80);
-            bli.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1)); // Rand 1 Pixel
-            bli.setToolTipText("Text");
+            JPanel bli = createPanel();
             feldLinks.add(bli);
 
         }
 
         for (int i = 0; i < 100; i++) {
-            JPanel bla = new JPanel();
-            bla.setBackground(Color.blue);
-            bla.setSize(10, 10);
-            bla.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1)); // Rand 1 Pixel
+            JPanel bla = createPanel();
             feldRechts.add(bla);
         }
 
@@ -56,6 +62,7 @@ public class FrameHolder {
         JButton button2 = new JButton("Reset");
         buttonPanel.add(button2);
         button2.setBackground(Color.lightGray);
+
 
         return panel;
     }
