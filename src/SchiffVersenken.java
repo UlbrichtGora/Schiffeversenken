@@ -12,6 +12,9 @@ public class SchiffVersenken {
         Schiff fregatte = new Schiff();
         fregatte.setName("Fregatte");
 
+        Schiff zerstoerer = new Schiff();
+        fregatte.setName("Zerstörer");
+
         Schiff flugzeugtraeger = new Schiff();
         flugzeugtraeger.setName("Flugzeugtraeger");
 
@@ -19,11 +22,12 @@ public class SchiffVersenken {
         uboot.setName("UBoot");
 
         flotte.add(fregatte);
+        flotte.add(zerstoerer);
         flotte.add(flugzeugtraeger);
         flotte.add(uboot);
 
         for (Schiff aktuellesSchiff : flotte) {
-            ArrayList<String> ort = spielHelfer.platziereSchiffe(3);
+            ArrayList<String> ort = spielHelfer.platziereSchiffe(4);
             aktuellesSchiff.setZellorte(ort);
 
         }

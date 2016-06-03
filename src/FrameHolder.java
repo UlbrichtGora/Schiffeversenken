@@ -18,43 +18,54 @@ public class FrameHolder {
         this.frame.setResizable(false);
     }
 
-    private JPanel createPanel() {
+    private JPanel createSpielfeld() {
         JPanel panel = new JPanel();
-        panel.setBackground(Color.blue);
+        panel.setBackground(Color.cyan);
         panel.setPreferredSize(new Dimension(30, 30));
-        panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1)); // Rand 1 Pixel
+        panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2)); // Rand 2 Pixel
         panel.setToolTipText(getClass().getName());
         return panel;
     }
 
     private JPanel createContent() {
-        JPanel panel = new JPanel(new BorderLayout(100, 100));
+        JPanel panel = new JPanel(new BorderLayout(80, 80));
+        JPanel eingabeBereich = new JPanel(new GridLayout(2, 2));
         JPanel feldLinks = new JPanel(new GridLayout(10, 10));
+
         JPanel feldRechts = new JPanel(new GridLayout(10, 10));
-        JLabel label = new JLabel("Wählen Sie Ihre Flotte");
+
+        JLabel labelName1 = new JLabel("Spieler 1: ");
+        JLabel labelName2 = new JLabel("Spieler 2: ");
+
+        JTextField name1 = new JTextField("...");
+        JTextField name2 = new JTextField("...");
         JPanel buttonPanel = new JPanel();
 
+        panel.add(eingabeBereich, BorderLayout.NORTH);
+        eingabeBereich.add(labelName1);
+        eingabeBereich.add(labelName2);
+        eingabeBereich.add(name1);
+        eingabeBereich.add(name2);
         panel.add(feldLinks, BorderLayout.WEST);
         panel.add(feldRechts, BorderLayout.EAST);
-        panel.add(label, BorderLayout.NORTH);
         panel.add(buttonPanel, BorderLayout.SOUTH);
         panel.add(this.createStringList(), BorderLayout.CENTER);
+
         System.out.println(panel.getPreferredSize());
 
 
         for (int i = 0; i < 100; i++) {
-            JPanel bli = createPanel();
-            bli.addMouseListener(new MouseAdapter() {
+            JPanel linkesFeld = createSpielfeld();
+            linkesFeld.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    bli.setToolTipText("JPanel 1 Mouse CLICKED");
-                    bli.setBackground(Color.YELLOW);
+                    linkesFeld.setToolTipText("Schiff platziert");
+                    linkesFeld.setBackground(Color.YELLOW);
                 }
 
                 @Override
                 public void mousePressed(MouseEvent e) {
-                    bli.setToolTipText("JPanel 1 Mouse Pressed");
-                    bli.setBackground(Color.gray);
+                    linkesFeld.setBackground(Color.gray);
                 }
 
                 @Override
@@ -64,7 +75,6 @@ public class FrameHolder {
 
                 @Override
                 public void mouseEntered(MouseEvent e) {
-                    bli.setToolTipText("JPanel 1 Mouse Entered");
 
                 }
 
@@ -73,34 +83,51 @@ public class FrameHolder {
 
                 }
             });
-            feldLinks.add(bli);
+            feldLinks.add(linkesFeld);
 
         }
 
         for (int i = 0; i < 100; i++) {
-            JPanel bla = createPanel();
-            feldRechts.add(bla);
+            JPanel rechtesFeld = createSpielfeld();
+
+            rechtesFeld.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    rechtesFeld.setToolTipText("Schiff platziert");
+                    rechtesFeld.setBackground(Color.YELLOW);
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {
+                }
+            });
+            feldRechts.add(rechtesFeld);
         }
 
-        JButton button1 = new JButton("Spielen");
-        buttonPanel.add(button1);
-        button1.setBackground(Color.lightGray);
+        JButton spielen = new JButton("Spielen");
+        buttonPanel.add(spielen);
+        spielen.setBackground(Color.lightGray);
 
-        JButton button2 = new JButton("Reset");
-        buttonPanel.add(button2);
-        button2.setBackground(Color.lightGray);
+        JButton spielSpeichern = new JButton("Speichern");
+        buttonPanel.add(spielSpeichern);
+        spielSpeichern.setBackground(Color.lightGray);
 
+        JButton reset = new JButton("Reset");
+        buttonPanel.add(reset);
+        reset.setBackground(Color.lightGray);
+        reset.addActionListener(new resetListener(name1, name2));
 
         return panel;
     }
+
     private JPanel createStringList() {
         JPanel panel = new JPanel();
 
-        String[] flotte = {"Schnellboot", "Fregatte", "Flugzeugträger",};
+        String[] flotte = {"U-Boot", "Fregatte",  "Zerstörer", "Flugzeugträger",};
 
         JList liste = new JList<>(flotte);
 
-        panel.add( new JScrollPane(liste, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER));
+        panel.add(new JScrollPane(liste, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER));
 
         return panel;
     }
