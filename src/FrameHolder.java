@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 /**
  * Created by mgora on 17.05.2016.
@@ -54,9 +55,17 @@ public class FrameHolder {
         System.out.println(panel.getPreferredSize());
 
 
+// Wir brauchen ein Panel Array um später auf Positionen zugreifen zu können!
+        JPanel[] panels = new JPanel[10];
+        for (int i = 0; i < panels.length; i++) {
+            panels[i] = createSpielfeld();
+        }
+
+
         for (int i = 0; i < 100; i++) {
             JPanel linkesFeld = createSpielfeld();
             linkesFeld.addMouseListener(new MouseAdapter() {
+
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     linkesFeld.setToolTipText("Schiff platziert");
@@ -123,7 +132,7 @@ public class FrameHolder {
     private JPanel createStringList() {
         JPanel panel = new JPanel();
 
-        String[] flotte = {"U-Boot", "Fregatte",  "Zerstörer", "Flugzeugträger",};
+        String[] flotte = {"U-Boot", "Fregatte", "Zerstörer", "Flugzeugträger",};
 
         JList liste = new JList<>(flotte);
 
