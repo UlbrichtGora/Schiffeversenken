@@ -56,6 +56,8 @@ public class FrameHolder {
 
 
 // Wir brauchen ein Panel Array um später auf Positionen zugreifen zu können!
+        // so wie es aktuelle aufgebaut ist, kein Zugriff darauf möglich
+        // TODO
         JPanel[] panels = new JPanel[10];
         for (int i = 0; i < panels.length; i++) {
             panels[i] = createSpielfeld();

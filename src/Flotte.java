@@ -15,7 +15,7 @@ public class Flotte {
         fregatte.setName("Fregatte");
 
         Schiff zerstoerer = new Schiff();
-        zerstoerer.setName("Zerstörer");
+        zerstoerer.setName("ZerstÃ¶rer");
 
         Schiff flugzeugtraeger = new Schiff();
         flugzeugtraeger.setName("Flugzeugtraeger");
