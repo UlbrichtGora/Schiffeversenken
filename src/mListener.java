@@ -8,8 +8,11 @@ import java.awt.event.MouseEvent;
  * Created by mgora on 08.06.2016.
  */
 public class mListener extends MouseAdapter {
+    public static final char sperrzone = 's';
+    public static final char wasser = 'w';
+    public static final char schiff = 's';
     private final JPanel[][] linksPanel;
-    private final int[] Schiff = new int[4];
+    private final int[] aktuellesSchiff = new int[4];
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -38,7 +41,7 @@ public class mListener extends MouseAdapter {
             }
         }
 
-        for (int i = 0; i < Schiff.length && y + Schiff.length <= 10; i++) {
+        for (int i = 0; i < aktuellesSchiff.length && y + aktuellesSchiff.length <= 10; i++) {
             try {
                 linksPanel[y][x + i].setBackground(Color.YELLOW);
             } catch (ArrayIndexOutOfBoundsException e1) {
@@ -49,6 +52,23 @@ public class mListener extends MouseAdapter {
 
         }
 
+//        int laenge = 0;
+//
+//        for (int zeile = y - 1; zeile <= y + 1; y++) {
+//            for (int spalte = x - 1; spalte <= x + laenge + 1; x++) {
+//
+//                try {
+//                    if (spielFeldBrett[zeile][spalte] != schiff) {
+//                        spielFeldBrett[zeile][spalte] = sperrzone;
+//
+//                    }
+//                } catch (ArrayIndexOutOfBoundsException e1) {
+//                    e1.printStackTrace();
+//                }
+//
+//            }
+//
+//        }
     }
 
     public mListener(JPanel[][] linksPanel) {

@@ -7,7 +7,6 @@ import java.awt.*;
 public class FrameHolder {
     private final JFrame frame;
     private String[] flotte = {"Flugzeugträger", "Zerstörer", "Fregatte", "U-Boot", "Schnellboot"};
-
     private final JPanel[][] linksPanel = new JPanel[10][10];
     private final JPanel[][] rechtsPanel = new JPanel[10][10];
 
@@ -20,7 +19,6 @@ public class FrameHolder {
         this.frame.setVisible(true);
         this.frame.setResizable(false);
     }
-
 
     private JPanel createContent() {
         JPanel panel = new JPanel(new BorderLayout(80, 80));
@@ -83,7 +81,6 @@ public class FrameHolder {
         panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1)); // Rand 1 Pixel
         return panel;
     }
-
     private JPanel createStringList() {
         JPanel panel = new JPanel();
         JList fleetList = new JList<>(flotte);
