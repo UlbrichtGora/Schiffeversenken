@@ -1,13 +1,15 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
-import java.util.ArrayList;
 
 /**
  * Created by mgora on 17.05.2016.
  */
 public class FrameHolder {
     private final JFrame frame;
+    private String[] flotte = {"Flugzeugträger", "Zerstörer", "Fregatte", "U-Boot", "Schnellboot"};
+
+    private final JPanel[][] linksPanel = new JPanel[10][10];
+    private final JPanel[][] rechtsPanel = new JPanel[10][10];
 
     public FrameHolder() {
         this.frame = new JFrame("Schiffe Versenken");
@@ -19,14 +21,6 @@ public class FrameHolder {
         this.frame.setResizable(false);
     }
 
-    private JPanel createSpielfeld() {
-        JPanel panel = new JPanel();
-        panel.setBackground(Color.cyan);
-        panel.setPreferredSize(new Dimension(30, 30));
-        panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2)); // Rand 2 Pixel
-        panel.setToolTipText(getClass().getName());
-        return panel;
-    }
 
     private JPanel createContent() {
         JPanel panel = new JPanel(new BorderLayout(80, 80));
@@ -54,66 +48,18 @@ public class FrameHolder {
 
         System.out.println(panel.getPreferredSize());
 
+        for (int i = 0; i < linksPanel.length; i++) {
+            for (int j = 0; j < linksPanel.length; j++) {
 
-// Wir brauchen ein Panel Array um später auf Positionen zugreifen zu können!
-        // so wie es aktuelle aufgebaut ist, kein Zugriff darauf möglich
-        // TODO
-        JPanel[] panels = new JPanel[10];
-        for (int i = 0; i < panels.length; i++) {
-            panels[i] = createSpielfeld();
+                linksPanel[i][j] = this.createSpielfeld(i, j);
+                rechtsPanel[i][j] = this.createSpielfeld(i, j);
+                feldLinks.add(linksPanel[i][j]);
+                feldRechts.add(rechtsPanel[i][j]);
+            }
         }
-
-
-        for (int i = 0; i < 100; i++) {
-            JPanel linkesFeld = createSpielfeld();
-            linkesFeld.addMouseListener(new MouseAdapter() {
-
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    linkesFeld.setToolTipText("Schiff platziert");
-                    linkesFeld.setBackground(Color.YELLOW);
-                }
-
-                @Override
-                public void mousePressed(MouseEvent e) {
-                    linkesFeld.setBackground(Color.gray);
-                }
-
-                @Override
-                public void mouseReleased(MouseEvent e) {
-
-                }
-
-                @Override
-                public void mouseEntered(MouseEvent e) {
-
-                }
-
-                @Override
-                public void mouseExited(MouseEvent e) {
-
-                }
-            });
-            feldLinks.add(linkesFeld);
-
-        }
-
-        for (int i = 0; i < 100; i++) {
-            JPanel rechtesFeld = createSpielfeld();
-
-            rechtesFeld.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    rechtesFeld.setToolTipText("Schiff platziert");
-                    rechtesFeld.setBackground(Color.YELLOW);
-                }
-
-                @Override
-                public void mousePressed(MouseEvent e) {
-                }
-            });
-            feldRechts.add(rechtesFeld);
-        }
+        mListener mouseL = new mListener(this.linksPanel);
+        feldLinks.addMouseListener(mouseL);
+        feldLinks.addMouseMotionListener(mouseL);
 
         JButton spielen = new JButton("Spielen");
         buttonPanel.add(spielen);
@@ -126,20 +72,24 @@ public class FrameHolder {
         JButton reset = new JButton("Reset");
         buttonPanel.add(reset);
         reset.setBackground(Color.lightGray);
-        reset.addActionListener(new resetListener(name1, name2));
+        reset.addActionListener(new ButtonResetListener(name1, name2));
+        return panel;
+    }
 
+    private JPanel createSpielfeld(int x, int y) {
+        JPanel panel = new JPanel();
+        panel.setBackground(Color.cyan);
+        panel.setPreferredSize(new Dimension(30, 30));
+        panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1)); // Rand 2 Pixel
         return panel;
     }
 
     private JPanel createStringList() {
         JPanel panel = new JPanel();
-
-        String[] flotte = {"U-Boot", "Fregatte", "Zerstörer", "Flugzeugträger",};
-
-        JList liste = new JList<>(flotte);
-
-        panel.add(new JScrollPane(liste, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER));
-
+        JList fleetList = new JList<>(flotte);
+        panel.add(new JScrollPane(fleetList, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER));
+        fleetList.setSelectedIndex(0);
+        fleetList.ensureIndexIsVisible(1);
         return panel;
     }
 }

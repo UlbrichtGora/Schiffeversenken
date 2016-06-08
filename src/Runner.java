@@ -10,9 +10,9 @@ public class Runner {
 //        SchiffVersenken spiel = new SchiffVersenken();
 //        spiel.spielCreate();
 //        spiel.spielStart();
-
-        Flotte flotte = new Flotte();
-        flotte.spielCreate();
+//
+//        Flotte flotte = new Flotte();
+//        flotte.spielCreate();
 
 
 
