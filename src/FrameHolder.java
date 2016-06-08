@@ -80,7 +80,7 @@ public class FrameHolder {
         JPanel panel = new JPanel();
         panel.setBackground(Color.cyan);
         panel.setPreferredSize(new Dimension(30, 30));
-        panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1)); // Rand 2 Pixel
+        panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1)); // Rand 1 Pixel
         return panel;
     }
 

@@ -16,7 +16,7 @@ public class mListener extends MouseAdapter {
 
         for (int i = 0; i < linksPanel.length; i++) {
             for (int j = 0; j < linksPanel.length; j++) {
-                linksPanel[i][j].setBackground(Color.BLUE);
+                linksPanel[i][j].setBackground(Color.CYAN);
                 linksPanel[i][j].setToolTipText("Platziert");
             }
         }
@@ -25,14 +25,14 @@ public class mListener extends MouseAdapter {
     @Override
     public void mouseMoved(MouseEvent e) {
         int x = e.getX() / 30;
-        System.out.println("Gibt mir x: " + x);
+        System.out.println("Koordinate X: " + x);
 
         int y = e.getY() / 30;
-        System.out.println("Gibt mir y: " + y);
+        System.out.println("Koordinate Y: " + y);
 
         for (int i = 0; i < linksPanel.length; i++) {
             for (int j = 0; j < linksPanel[i].length; j++) {
-                linksPanel[i][j].setBackground(Color.BLUE);
+                linksPanel[i][j].setBackground(Color.CYAN);
 
 
             }
@@ -44,7 +44,7 @@ public class mListener extends MouseAdapter {
             } catch (ArrayIndexOutOfBoundsException e1) {
 
             }
-            linksPanel[y + i][x].setBackground(Color.BLUE);
+            linksPanel[y + i][x].setBackground(Color.CYAN);
 
 
         }
